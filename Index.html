@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CS - Client Relationship Perception Score</title>
+  <style>
+    body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: #191919;
+  color: #ffffff;
+  margin: 20px;
+  font-size: 13px; /* Base font size for the body */
+}
+
+p {
+  font-size: 13px; /* Explicitly set the font size for paragraph tags */
+}
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #333333;
+      border-radius: 8px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .form-header {
+      color: #22FA0E;
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .logo-container {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .logo {
+      width: 150px;
+      height: auto;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    /* Add 15px padding beneath the Grade label */
+    label[for="grade"] {
+      padding-bottom: 20px;
+    }
+
+    /* Add 15px padding beneath the Grade label */
+    label[for="grade"] {
+      padding-bottom: 20px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 19px;
+      border: none;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .slider-container {
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .slider-container .score-display {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 18px;
+      color: #22FA0E;
+      font-weight: bold;
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: #22FA0E; /* Green slider color */
+      position: relative;
+    }
+    .slider-hashmarks {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2px;
+    }
+    .slider-hashmarks div {
+      height: 10px;
+      width: 2px;
+      background-color: #ffffff;
+    }
+    .slider-lines {
+      display: flex;
+      position: relative;
+      margin-top: 8px;
+    }
+    .line {
+      height: 2px;
+    }
+    .line.detractors {
+      background-color: #E05533;
+      flex: 4;
+    }
+    .line.fence-sitters {
+      background-color: #FFFFFF;
+      flex: 3;
+    }
+    .line.promoters {
+      background-color: #42FC09;
+      flex: 3;
+    }
+    .slider-numbers {
+      position: absolute;
+      top: 30px; /* Position below the slider bar */
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #ffffff;
+    }
+    .slider-brackets {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #cccccc;
+    }
+    .slider-brackets span {
+      text-align: center;
+      flex: 1;
+    }
+    .button-container {
+      text-align: center;
+    }
+    button {
+      width: 100%;
+      background-color: #20FB0C;
+      color: #191919;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      padding: 12px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #27792B;
+    }
+    hr {
+      border: none;
+      border-top: 2px solid #E05533;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Combined Title, Logo, and Directions Container -->
+  <div class="container">
+    <div class="logo-container">
+      <img id="logo" class="logo" src="https://cdn.cookielaw.org/logos/7ba06c79-c361-41ed-a63a-69187228a763/3ac54c1e-8959-41e8-8446-816417cb8680/0b2f3ac2-d4bc-4f08-8598-5e284077f1c0/simplifi_logo_full_white.png" alt="Logo">
+    </div>
+    <h1 class="form-header">CS - Client Relationship Perception Score</h1>
+    <p>This questionnaire is designed to assess the strength of our client relationships and identify opportunities or challenges that can be addressed to improve overall business performance.
+    </p>
+
+    <p>The Account Manager or Director will select the client they manage and then assign a health score based on the following scoring scale:
+    </p>
+
+    <p>
+    <strong>Detractors (0-4):</strong>
+    <ul>
+      <li><strong>0:</strong> Client totally churns and business is lost. This helps us document full churn.</li>
+      <li><strong>1-2:</strong> Major issues, client expresses dissatisfaction, high risk of churn. <em>Fill Out Feedback Section with more information</em></li>
+      <li><strong>3-4:</strong> Moderate issues, client expresses some dissatisfaction, potential risk of churn. <em>Fill Out Feedback Section with more information</em></li>
+    </ul>
+    <strong>Fence-Sitters (5-7):</strong>
+    <ul>
+     <li><strong>5-6:</strong> Stable relationship, some minor issues, no immediate risk of churn, potential icebergs.</li>
+      <li><strong>7:</strong> Good relationship, occasional minor issues, low risk of churn.</li>
+    </ul>
+    <strong>Promoters (8-10):</strong>
+    <ul>
+     <li><strong>8-9:</strong> Very good relationship, few or no issues, very low risk of churn.</li>
+      <li><strong>10:</strong> Excellent relationship, no issues, client is highly satisfied and loyal.</li>
+    </ul>
+</p>
+
+  </div>
+
+  <!-- Combined Form Elements Container -->
+  <div class="container">
+    <!-- Email Section -->
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="example@simpli.fi" required>
+      <hr>
+
+    <!-- Billing Org / Billing ID Section -->
+    <div class="search-container">
+      <label for="billingSearch">Search Billing Org / Billing ID:</label>
+      <input type="text" id="billingSearch" placeholder="Start typing to search..." oninput="filterBillingOrgs()">
+      <div id="billingDropdown" class="dropdown"></div>
+    </div>
+    <hr>
+
+    <!-- Grade Section -->
+    <label for="grade">Grade (0-10):</label>
+    <div class="slider-container">
+      <div id="scoreDisplay" class="score-display">5</div>
+      <input type="range" id="grade" name="grade" min="0" max="10" step="1" value="5" oninput="updateGradeValue(this)">
+      <div class="slider-numbers">
+        <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+        <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+      </div>
+      <div class="slider-hashmarks">
+        <div></div><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+      <div class="slider-lines">
+        <div class="line detractors"></div>
+        <div class="line fence-sitters"></div>
+        <div class="line promoters"></div>
+      </div>
+      <div class="slider-brackets">
+        <span>0-4<br>Detractors</span>
+        <span>5-7<br>Fence-Sitters</span>
+        <span>8-10<br>Promoters</span>
+      </div>
+    </div>
+    <hr>
+
+    <!-- Feedback Section -->
+    <label for="feedback">Feedback / Opportunities / Problems:</label>
+    <p>
+      <strong>Feedback:</strong> Provide Description Problems and/or Opportunities
+    </p>
+    <p>
+      <strong>Problems:</strong> Are there any obstacles that could jeopardize the stability of the business?
+    </p>
+    <p>
+      <strong>Opportunities:</strong> What specific aspects could enhance our chances of securing additional budget from the client (Product, Features, Custom Reporting)?
+    </p>
+    <textarea id="feedback" name="feedback" rows="5" placeholder="Provide detailed feedback..."></textarea>
+    <hr>
+
+    <!-- Submit Button -->
+    <div class="button-container">
+      <button type="button" onclick="submitForm()">Submit</button>
+    </div>
+  </div>
+
+  <script>
+    let billingOrganizations = [];
+
+    // Fetch billing organizations from Google Sheets
+    function fetchBillingOrganizations() {
+      google.script.run
+        .withSuccessHandler((data) => {
+          billingOrganizations = data;
+        })
+        .getBillingOrganizations();
+    }
+
+    function filterBillingOrgs() {
+      const searchInput = document.getElementById('billingSearch');
+      const dropdown = document.getElementById('billingDropdown');
+      const query = searchInput.value.toLowerCase();
+
+      dropdown.innerHTML = '';
+      if (query.length === 0) {
+        dropdown.style.display = 'none';
+        return;
+      }
+
+      const filtered = billingOrganizations.filter((org) => org.toLowerCase().includes(query));
+      if (filtered.length > 0) {
+        dropdown.style.display = 'block';
+        filtered.forEach((org) => {
+          const option = document.createElement('div');
+          option.textContent = org;
+          option.onclick = () => {
+            searchInput.value = org;
+            dropdown.style.display = 'none';
+          };
+          dropdown.appendChild(option);
+        });
+      } else {
+        dropdown.style.display = 'none';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchBillingOrganizations);
+
+    function updateGradeValue(slider) {
+      const scoreDisplay = document.getElementById('scoreDisplay');
+      const sliderWidth = slider.offsetWidth;
+      const value = slider.value;
+      const position = (value / 10) * sliderWidth;
+
+      scoreDisplay.textContent = value;
+      scoreDisplay.style.left = `${position}px`;
+    }
+
+    function submitForm() {
+  const email = document.getElementById("email").value.trim();
+  const billingOrg = document.getElementById("billingSearch").value.trim();
+  const grade = document.getElementById("grade").value;
+  const feedback = document.getElementById("feedback").value.trim();
+
+  if (!email || !billingOrg || grade === null) {
+    alert("Please complete all required fields.");
+    return;
+  }
+
+  const formData = { email, billingOrg, grade, feedback };
+
+  google.script.run
+    .withSuccessHandler(() => {
+      alert("Form submitted successfully!");
+
+      // Reset form fields
+      document.getElementById("email").value = "";
+      document.getElementById("billingSearch").value = "";
+      document.getElementById("grade").value = "5"; // Reset slider to default value
+      document.getElementById("scoreDisplay").textContent = "5"; // Reset score display
+      document.getElementById("feedback").value = "";
+    })
+    .withFailureHandler((error) => {
+      alert(`Error: ${error}`);
+    })
+    .processCsForm(formData);
+  }
+
+
+  </script>
+</body>
+</html>
