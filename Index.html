@@ -4,16 +4,16 @@
   <title>CS - Client Relationship Perception Score</title>
   <style>
     body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background-color: #191919;
-  color: #ffffff;
-  margin: 20px;
-  font-size: 13px; /* Base font size for the body */
-}
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background-color: #191919;
+      color: #ffffff;
+      margin: 20px;
+      font-size: 13px; /* Base font size for the body */
+    }
 
-p {
-  font-size: 13px; /* Explicitly set the font size for paragraph tags */
-}
+    p {
+      font-size: 13px; /* Explicitly set the font size for paragraph tags */
+    }
 
     .container {
       max-width: 600px;
@@ -299,36 +299,36 @@ p {
     }
 
     function submitForm() {
-  const email = document.getElementById("email").value.trim();
-  const billingOrg = document.getElementById("billingSearch").value.trim();
-  const grade = document.getElementById("grade").value;
-  const feedback = document.getElementById("feedback").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const billingOrg = document.getElementById("billingSearch").value.trim();
+      const grade = document.getElementById("grade").value;
+      const feedback = document.getElementById("feedback").value.trim();
 
-  if (!email || !billingOrg || grade === null) {
-    alert("Please complete all required fields.");
-    return;
-  }
+      if (!email || !billingOrg || grade === null) {
+        alert("Please complete all required fields.");
+        return;
+      }
 
-  const formData = { email, billingOrg, grade, feedback };
+      const formData = { email, billingOrg, grade, feedback };
 
-  google.script.run
-    .withSuccessHandler(() => {
-      alert("Form submitted successfully!");
+      // Send form data to the Google Apps Script Web App
+      fetch('https://script.google.com/a/macros/simpli.fi/s/AKfycbwsKBBum__PWGFXkQR6--itGIz80dJWBOIgNvQtjThqRWFspZov-vFC6l10kqdVim_I/exec', {
+        method: 'POST',
+        body: new URLSearchParams(formData)
+      })
+      .then(response => response.text())
+      .then(data => {
+        alert("Form submitted successfully!");
 
-      // Reset form fields
-      document.getElementById("email").value = "";
-      document.getElementById("billingSearch").value = "";
-      document.getElementById("grade").value = "5"; // Reset slider to default value
-      document.getElementById("scoreDisplay").textContent = "5"; // Reset score display
-      document.getElementById("feedback").value = "";
-    })
-    .withFailureHandler((error) => {
-      alert(`Error: ${error}`);
-    })
-    .processCsForm(formData);
-  }
-
-
+        // Reset form fields
+        document.getElementById("email").value = "";
+        document.getElementById("billingSearch").value = "";
+        document.getElementById("grade").value = "5"; // Reset slider to default value
+        document.getElementById("scoreDisplay").textContent = "5"; // Reset score display
+        document.getElementById("feedback").value = "";
+      })
+      .catch(error => alert(`Error: ${error}`));
+    }
   </script>
 </body>
 </html>
